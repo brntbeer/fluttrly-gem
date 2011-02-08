@@ -1,0 +1,5 @@
+#!/usr/local/bin/ruby
+
+require 'fluttrly-gem'
+
+Fluttrly::Command.execute(*ARGV)
