@@ -2,7 +2,6 @@ require 'rubygems'
 require 'net/http'
 require 'JSON'
 require 'Time'
-require 'Hpricot'
 
 
 #require 'fluttrly-gem/command'
