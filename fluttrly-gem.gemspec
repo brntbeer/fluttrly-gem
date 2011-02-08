@@ -8,12 +8,12 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Brent Beer"]
   s.email       = ["brent.beer@gmail.com"]
-  s.homepage    = "http://rubygems.org/gems/fluttrly-gem"
+  s.homepage    = "http://rubygems.org/gems/fluttrly"
   s.summary     = %q{Fluttrly.com command line interface.}
   s.description = %q{Maintain and inspect your fluttrly lists.}
 
   s.rubyforge_project = "fluttrly-gem"
-	s.add_development_dependency "json"
+  s.add_development_dependency "json"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
