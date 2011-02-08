@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 require "fluttrly-gem/version"
 
 Gem::Specification.new do |s|
-  s.name        = "fluttrly-gem"
+  s.name        = "fluttrly"
   s.version     = Fluttrly::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Brent Beer"]
