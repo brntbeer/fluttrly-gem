@@ -24,4 +24,5 @@ so not all of the features are done yet.
     Task => "Nothing to see here, move along" at => 02-08-2011 18:57 PM 
 		
 ##Install 
-    gem install fluttrly
+    $ bundle
+		$ gem install fluttrly
