@@ -17,11 +17,19 @@ so not all of the features are done yet.
 
 
 ##Usage
-
 ** List an item **
     #fluttrly <command> <list>
     $ fluttrly list bouverdafs
     Task => "Nothing to see here, move along" at => 02-08-2011 18:57 PM 
+
+** Post an item **
+    #fluttrly <command> <list> <message>
+    $ fluttrly post bouverdafs "gem'd"
+    $ fluttrly list bouverdafs
+    Task => "gem'd" at => 02-10-2011 16:18 PM 
+    Task => "Nothing to see here, move along" at => 02-08-2011 18:57 PM 
+    
+
 		
 ##Install 
 		$ gem install fluttrly
