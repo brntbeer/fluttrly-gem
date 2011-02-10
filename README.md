@@ -30,6 +30,13 @@ so not all of the features are done yet.
     Task => "Nothing to see here, move along" at => 02-08-2011 18:57 PM 
     
 
-		
+    
 ##Install 
-		$ gem install fluttrly
+    $ gem install fluttrly
+
+##TO DO
+* Marking items completed
+* Removing items completely (1 or many)
+* Adding to locked lists :\
+
+
