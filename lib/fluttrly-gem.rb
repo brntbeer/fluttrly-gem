@@ -35,8 +35,31 @@ module Fluttrly
         end
       end
 
-      def post(list=nil, message=nil)
-        puts "bouverdafs"
+      #Posting requires getting COOKIE om nom nom and a csrf token..
+      def post(list, message)
+        uri = URI.parse("http://fluttrly.com/#{list}")
+        http = Net::HTTP.new(uri.host, uri.port)
+        response = http.request(Net::HTTP::Get.new(uri.request_uri))
+
+        #get the csrf-token, really wanna use hpricot here but...
+        auth_token = $1 if response.body =~ /"authenticity_token".*value="(.+)"/ or nil
+        raise "No authenticity token found :(" if auth_token.nil?
+
+        #COOKIE COOKIE COOKIE COOKIE COOKIE COOKIE
+        cookie = response['set-cookie'].split('; ')[0]
+
+        #ok ok, now send that post data
+        uri = URI.parse('http://fluttrly.com/tasks.js')
+        request = Net::HTTP::Post.new(uri.request_uri)
+        params = {
+                  'authenticity_token' => auth_token,
+                  'task[name]' => "#{list}",
+                  'task[content]' => "#{message}"
+        }
+        request["Cookie"] = cookie
+        request.set_form_data(params)
+        response = http.request(request)
+
       end
 
     end
