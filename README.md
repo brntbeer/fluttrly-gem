@@ -13,7 +13,8 @@ command line utility myself. Sweet!
 
 ##Disclaimer
 If you somehow get hurt using this. You're retarded. That being said, I shipped this as soon as possible,
-so not all of the features are done yet.
+so not all of the features are done yet. Also, by shipping as soon as possible I realize there's much
+to be refactored.
 
 
 ##Usage
@@ -29,13 +30,25 @@ so not all of the features are done yet.
     Task => "gem'd" at => 02-10-2011 16:18 PM 
     Task => "Nothing to see here, move along" at => 02-08-2011 18:57 PM 
     
+** Update a task **
+    #fluttrly <command> <list>
+    $ fluttrly edit bouverdafs
+    1: Task => "gem'd" at => 02-10-2011 16:18 PM (Completed? false)
+    2: Task => "Nothing to see here, move along" at => 02-08-2011 18:57 PM (Completed? false)
+    Which item would you like to edit?
+    1
+    fluttrly list bouverdafs
+    1: Task => "gem'd" at => 02-10-2011 16:18 PM (Completed? true)
+    2: Task => "Nothing to see here, move along" at => 02-08-2011 18:57 PM (Completed? false)
+    
+    
 
     
 ##Install 
     $ gem install fluttrly
 
 ##TO DO
-* Marking items completed
+* Tom-doc this ish
 * Removing items completely (1 or many)
 * Adding to locked lists :\
 

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    fluttrly-gem (0.0.1)
+    fluttrly (0.0.3)
 
 GEM
   remote: http://rubygems.org/
@@ -12,5 +12,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  fluttrly-gem!
-  json
+  fluttrly!
+  json (>= 1.5.1)

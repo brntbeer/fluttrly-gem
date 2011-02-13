@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.description = %q{Maintain and inspect your fluttrly lists.}
 
   s.rubyforge_project = "fluttrly-gem"
-  s.add_development_dependency "json"
+  s.add_development_dependency "json", ">= 1.5.1"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
