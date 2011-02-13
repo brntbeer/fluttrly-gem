@@ -32,12 +32,12 @@ to be refactored.
     
 ** Update a task **
     #fluttrly <command> <list>
-    $ fluttrly edit bouverdafs
+    $ fluttrly update bouverdafs
     1: Task => "gem'd" at => 02-10-2011 16:18 PM (Completed? false)
     2: Task => "Nothing to see here, move along" at => 02-08-2011 18:57 PM (Completed? false)
     Which item would you like to edit?
     1
-    fluttrly list bouverdafs
+    $ fluttrly list bouverdafs
     1: Task => "gem'd" at => 02-10-2011 16:18 PM (Completed? true)
     2: Task => "Nothing to see here, move along" at => 02-08-2011 18:57 PM (Completed? false)
     
