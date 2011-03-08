@@ -22,6 +22,7 @@ module Fluttrly
         return list(list) if command == 'list'
         return post(list, message) if command == 'post'
         return update(list) if command == 'update'
+        return help if command == 'help' || command == '-h'  
       end
 
       def update(list)
@@ -119,6 +120,31 @@ module Fluttrly
         request["Cookie"] = cookie
         request.set_form_data(params)
         response = http.request(request)
+      end
+
+      def help
+        text = %{
+          Fluttrly is a nice web app to help you collaborate to-do lists
+          with your friends, this is the 'help' for its command line
+          interpreter.
+
+          Usage:
+            fluttrly -h/help
+            fluttrly <command> <list> <message for posting>
+            
+          Examples:
+            fluttrly list bouverdafs             Output the list "Bouverdafs"
+            fluttrly post bouverdafs "winning"   Add to the list bouverdafs the message
+                                                 "winning"
+            fluttrly update bouverdafs           Presents the user with a prompt to
+                                                 allow them to update a specific item
+                                                 on that list.
+
+          For more information please go to:
+          http://github.com/brntbeer/fluttrly-gem
+         
+        }.gsub(/^ {8}/, '') #to strip 8 lines of whitespace
+        puts text
       end
 
     end
