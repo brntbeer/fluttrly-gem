@@ -4,9 +4,7 @@ require 'JSON'
 require 'Time'
 
 
-#require 'fluttrly-gem/command'
 module Fluttrly
-  # Your code goes here...
   class Command
     class << self
       def execute(*args)
@@ -19,9 +17,9 @@ module Fluttrly
       end
 
       def parse_arguments(command, list, message)
-        return list(list) if command == 'list'
-        return post(list, message) if command == 'post'
-        return update(list) if command == 'update'
+        return list(list) if command == 'list' || command == 'l'
+        return post(list, message) if command == 'post' || command == 'p'
+        return update(list) if command == 'update' || command == 'c'
         return help if command == 'help' || command == '-h'  
       end
 
