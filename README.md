@@ -18,12 +18,15 @@ to be refactored.
 
 
 ##Usage
+
 ** List an item **
+
     #fluttrly <command> <list>
     $ fluttrly list bouverdafs
     Task => "Nothing to see here, move along" at => 02-08-2011 18:57 PM 
 
 ** Post an item **
+
     #fluttrly <command> <list> <message>
     $ fluttrly post bouverdafs "gem'd"
     $ fluttrly list bouverdafs
@@ -31,6 +34,7 @@ to be refactored.
     Task => "Nothing to see here, move along" at => 02-08-2011 18:57 PM 
     
 ** Update a task **
+
     #fluttrly <command> <list>
     $ fluttrly update bouverdafs
     1: Task => "gem'd" at => 02-10-2011 16:18 PM (Completed? false)
