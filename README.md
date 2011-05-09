@@ -19,13 +19,13 @@ to be refactored.
 
 ##Usage
 
-** List an item **
+####List an item
 
     #fluttrly <command> <list>
     $ fluttrly list bouverdafs
     Task => "Nothing to see here, move along" at => 02-08-2011 18:57 PM 
 
-** Post an item **
+####Post an item
 
     #fluttrly <command> <list> <message>
     $ fluttrly post bouverdafs "gem'd"
@@ -33,7 +33,7 @@ to be refactored.
     Task => "gem'd" at => 02-10-2011 16:18 PM 
     Task => "Nothing to see here, move along" at => 02-08-2011 18:57 PM 
     
-** Update a task **
+####Update a task
 
     #fluttrly <command> <list>
     $ fluttrly update bouverdafs
@@ -48,12 +48,21 @@ to be refactored.
     
 
     
-##Install 
+##Install
+Fork or download this and play with it yourself! If you want to just test
+it locally:
+    $ bundle
+    $ gem build fluttrly-gem.gemspec
+    $ gem install fluttrly-0.0.4.gem
+
+Or just grab the latest from rubygems.org and use it.
+
     $ gem install fluttrly
 
+
+
 ##TO DO
-* Tom-doc this ish
 * Removing items completely (1 or many)
-* Adding to locked lists :\
+* Adding to locked lists 
 
 
