@@ -1,2 +1,13 @@
 require 'bundler'
+require 'rubygems'
+require 'rake'
+
 Bundler::GemHelper.install_tasks
+
+task :default => :test
+
+require 'rake/testtask'
+Rake::TestTask.new(:test) do |test|
+  test.libs << 'lib' << 'test'
+  test.pattern = 'test/**/test_*.rb'
+end
