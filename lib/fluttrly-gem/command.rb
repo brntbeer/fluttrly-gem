@@ -33,7 +33,25 @@ module Fluttrly
         return list(list) if command == 'list' || command == 'l'
         return post(list, message) if command == 'post' || command == 'p'
         return update(list) if command == 'update' || command == 'c'
+        return delete(list) if command == 'delete' || command == 'd'
         return help if command == 'help' || command == '-h'  
+      end
+
+      # Command used to delete one or all items in a list
+      #
+      # list - List to delete items from.
+      # 
+      # Returns a refreshed list showing the changes
+      def delete(list)
+        response = form_response(list)[1]
+        page = list(list)
+        if page
+          puts "Which item would you like to delete?"
+          num = STDIN.gets.chomp.to_i
+          id = page[num-1]["task"]["id"]
+          delete_task(id, response)
+        list(list)
+        end
       end
 
       # Command used if wanting to mark an item to edit
@@ -63,6 +81,7 @@ module Fluttrly
         if Net::HTTPSuccess === response
           i = 1
           page = JSON.parse(response.body)
+          puts ""
           page.each do |task|
             puts("#{i}: Task => \"#{task["task"]["content"]}\" at => #{Time.parse(task["task"]["created_at"]).strftime("%m-%d-%Y %H:%M %p")} (Completed? #{task["task"]["completed"]})") 
             i = i+1
@@ -115,6 +134,8 @@ module Fluttrly
             fluttrly update bouverdafs           Presents the user with a prompt to
                                                  allow them to update a specific item
                                                  on that list.
+            fluttrly delete bouverdafs           Just like `update`,except allows user
+                                                 to delete a specific item from list. 
 
           For more information please go to:
           http://github.com/brntbeer/fluttrly-gem
@@ -159,7 +180,7 @@ module Fluttrly
       # Returns nothing.
       def post_request(list, message, response, http)
         auth_token = $1 if response.body =~ /"authenticity_token".*value="(.+)"/ or nil
-        raise "No authenticity token found :(" if auth_token.nil?
+        raise "Not authenticated to perform this action." if auth_token.nil?
 
         #COOKIE COOKIE COOKIE COOKIE COOKIE COOKIE
         cookie = response['set-cookie'].split('; ')[0]
@@ -185,7 +206,7 @@ module Fluttrly
       # Returns nothing.
       def update_task(id, response)
         auth_token = $1 if response.body =~ /"csrf-token".*content="(.+)"/ or nil
-        raise "No authenticity token found :(" if auth_token.nil?
+        raise "Not authenticated to perform this action." if auth_token.nil?
 
         #COOKIE COOKIE COOKIE COOKIE COOKIE COOKIE
         cookie = response['set-cookie'].split('; ')[0]
@@ -202,7 +223,29 @@ module Fluttrly
         response = http.request(request)
       end
 
+      # Private: Performs the DELETE method to delete task(s)
+      #
+      # id       - The ID or ids of the task(s) we're updating
+      # response - The response from a previous http request, used to
+      #            get cookie and csrf token.
+      #
+      # Returns nothing.
+      def delete_task(id, response)
+        auth_token = $1 if response.body =~ /"csrf-token".*content="(.+)"/ or nil
+        raise "Not authenticated to perform this action." if auth_token.nil?
 
+        cookie = response['set-cookie'].split('; ')[0]
+
+        uri = URI.parse("http://fluttrly.com/tasks/#{id}")
+        http = Net::HTTP.new(uri.host, uri.port)
+        request = Net::HTTP::Delete.new(uri.request_uri)
+        params = {
+                  'authenticity_token' => auth_token,
+        }
+        request["Cookie"] = cookie
+        request.set_form_data(params)
+        response = http.request(request)
+      end
     end
   end
 end
