@@ -40,34 +40,36 @@ module Fluttrly
       # Command used to delete one or all items in a list
       #
       # list - List to delete items from.
+      # num  - Number in the list to update if already known.
       # 
       # Returns a refreshed list showing the changes
-      def delete(list)
+      def delete(list, num=nil)
         response = form_response(list)[1]
         page = list(list)
         if page
           puts "Which item would you like to delete?"
-          num = STDIN.gets.chomp.to_i
+          num = STDIN.gets.chomp.to_i if num.nil?
           id = page[num-1]["task"]["id"]
           delete_task(id, response)
-        list(list)
+        #list(list)
         end
       end
 
       # Command used if wanting to mark an item to edit
       #
       # list - List to update
+      # num  - Number in list to update if already known.
       # 
       # Returns the list with its items to show the change.
-      def update(list)
+      def update(list, num=nil)
         response = form_response(list)[1]
         page = list(list)
         if page
           puts 'Which item would you like to edit?'
-          num = STDIN.gets.chomp.to_i
+          num = STDIN.gets.chomp.to_i if num.nil?
           id = page[num-1]["task"]["id"]
           update_task(id,response) 
-          list(list)
+          #list(list)
         end
       end
 
@@ -110,7 +112,7 @@ module Fluttrly
         else
           response.error!
         end
-        list(list)
+        #list(list)
       end
 
       # Command used to print out some helpful hints!
